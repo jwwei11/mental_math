@@ -1,0 +1,174 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Your Saved Settings
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a New Setting
+    </h2>
+
+    <form action="/insert_setting" method="post">
+      <div class="form-group">
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="owner_id_from_query" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="upper_digit_limit_box">
+          Upper Limit
+        </label>
+
+        <input type="text" id="upper_digit_limit_box" name="upper_digit_limit_from_query" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="lower_digit_limit_box">
+          Lower Limit
+        </label>
+
+        <input type="text" id="lower_digit_limit_box" name="lower_digit_limit_from_query" class="form-control">
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="multiplication_box" name="multiplication_from_query" value="1">
+
+        <label class="custom-control-label" for="multiplication_box">Multiplication</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="addition_box" name="addition_from_query" value="1">
+
+        <label class="custom-control-label" for="addition_box">Addition</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="division_box" name="division_from_query" value="1">
+
+        <label class="custom-control-label" for="division_box">Division</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="subtraction_box" name="subtraction_from_query" value="1">
+
+        <label class="custom-control-label" for="subtraction_box">Subtraction</label>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create setting
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Setting Number
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Upper Limit
+        </th>
+
+        <th>
+          Lower Limit
+        </th>
+
+        <th>
+          Multiplication
+        </th>
+
+        <th>
+          Addition
+        </th>
+
+        <th>
+          Division
+        </th>
+
+        <th>
+          Subtraction
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @settings.each do |setting| %>
+      <tr>
+        <td>
+          <%= setting.id %>
+        </td>
+
+        <td>
+          <%= setting.owner_id %>
+        </td>
+
+        <td>
+          <%= setting.upper_digit_limit %>
+        </td>
+
+        <td>
+          <%= setting.lower_digit_limit %>
+        </td>
+
+        <td>
+          <%= setting.multiplication %>
+        </td>
+
+        <td>
+          <%= setting.addition %>
+        </td>
+
+        <td>
+          <%= setting.division %>
+        </td>
+
+        <td>
+          <%= setting.subtraction %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(setting.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(setting.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/settings/<%= setting.id %>">
+            Show Details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

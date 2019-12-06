@@ -1,0 +1,128 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Setting <%= @setting.id %>
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/settings" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_setting/<%= @setting.id %>" class="btn btn-block btn-outline-secondary">
+          Delete setting
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Owner: <%= @setting.owner_id %>
+      </dt>
+      <dt>
+        Upper digit limit: <%= @setting.upper_digit_limit %>
+      </dt>
+      <dt>
+        Lower digit limit: <%= @setting.lower_digit_limit %>
+      </dt>
+      <dt>
+        Multiplication: <%= @setting.multiplication %>
+      </dt>
+      <dt>
+        Addition: <%= @setting.addition %>
+      </dt>
+      <dt>
+        Division: <%= @setting.division %>
+      </dt>
+      <dt>
+        Subtraction: <%= @setting.subtraction %>
+      </dt>
+      <dt>
+        Created at <%= time_ago_in_words(@setting.created_at) %> ago
+      </dt>
+      <dt>
+        Updated at <%= time_ago_in_words(@setting.updated_at) %> ago
+      </dt>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit setting
+    </h2>
+
+    <form action="/modify_setting/<%= @setting.id %>"  method="post" >
+      <div class="form-group">
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="owner_id_from_query" class="form-control" value="<%= @setting.owner_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="upper_digit_limit_box">
+          Upper digit limit
+        </label>
+
+        <input type="text" id="upper_digit_limit_box" name="upper_digit_limit_from_query" class="form-control" value="<%= @setting.upper_digit_limit %>">
+      </div>
+
+      <div class="form-group">
+        <label for="lower_digit_limit_box">
+          Lower digit limit
+        </label>
+
+        <input type="text" id="lower_digit_limit_box" name="lower_digit_limit_from_query" class="form-control" value="<%= @setting.lower_digit_limit %>">
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="multiplication_box" name="multiplication_from_query" value="1" <%= "checked" if @setting.multiplication %>>
+
+        <label class="custom-control-label"
+          for="multiplication_box">Multiplication</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="addition_box" name="addition_from_query" value="1" <%= "checked" if @setting.addition %>>
+
+        <label class="custom-control-label"
+          for="addition_box">Addition</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="division_box" name="division_from_query" value="1" <%= "checked" if @setting.division %>>
+
+        <label class="custom-control-label"
+          for="division_box">Division</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="subtraction_box" name="subtraction_from_query" value="1" <%= "checked" if @setting.subtraction %>>
+
+        <label class="custom-control-label"
+          for="subtraction_box">Subtraction</label>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update setting
+      </button>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row mb-3">
+  <div class="col">
+      <a href="/settings/<%=@setting.id%>/practice/0" class="btn btn-block btn-outline-secondary">
+        Practice
+      </a>
+    </div>
+</div>
