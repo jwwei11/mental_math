@@ -2,7 +2,7 @@
 class UserSessionsController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:new_session_form, :add_cookie] })
   def home
-    render({:template => "application.html.erb"})
+    render({:template => "welcome.html.erb"})
   end
   def new_session_form
     render({ :template => "user_sessions/sign_in.html.erb" })

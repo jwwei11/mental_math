@@ -1,0 +1,24 @@
+
+<div class="text-center">
+  <div class="w-100 p-3">
+    <font size = 100> Welcome, <%= User.where(:id => session.fetch(:user_id)).first.email %>! </font>
+  </div>
+  <div class="w-100 p-3">
+
+    <% total_correct = Result.where("correct_answer == user_answer").length %>
+    <% total_attempts = Result.count %>
+    <%if total_attempts != 0%>
+      <font size = 50> You have answered <%= total_correct %> questions correctly (<%= (total_correct*100.00/total_attempts).round(2) %> %)</font>
+    <% end %>
+  </div>
+  <div class = "col">
+    <a href="/settings">
+      Your Practice Settings
+    </a>
+  </div>
+  <div class = "col">
+    <a href="/results">
+      Your Practice Results
+    </a>
+
+</div>

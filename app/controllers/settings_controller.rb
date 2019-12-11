@@ -31,7 +31,7 @@ class SettingsController < ApplicationController
       operation_list.push("-")
     end
     operation = rand(operation_list.length)
-    # operation_list = ["x", "/", "+", "-"]
+    operation_hash = {"x" => 0, "/" => 1, "+" => 2, "-" => 3}
     @problem = first_digit.to_s + operation_list[operation] + second_digit.to_s
     # ensure that all answers are whole numbers
     if operation_list[operation] == "/"
@@ -48,7 +48,7 @@ class SettingsController < ApplicationController
     end
     @problem_info = {:first_number_from_query => first_digit,
                       :second_number_from_query => second_digit, 
-                      :operation_from_query => operation, 
+                      :operation_from_query => operation_hash.fetch(operation_list[operation]), 
                       :correct_answer_from_query => @answer}
     # @current_result = Results.new
     # @current_result.setting_id = s.id

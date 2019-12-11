@@ -134,19 +134,7 @@
     <table class="table">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
-          First number
-        </th>
-
-        <th>
-          Second number
-        </th>
-
-        <th>
-          Operation
+          Question
         </th>
 
         <th>
@@ -164,49 +152,35 @@
         <th>
           Created at
         </th>
-
-        <th>
-          Updated at
-        </th>
       </tr>
 
+      <% operations_list = ["x", "/", "+", "-"] %>
       <% Result.where({:setting_id => params.fetch(:id_from_path)}).each do |result| %>
-      <tr>
-        <td>
-          <%= result.id %>
-        </td>
+        <%color = "#ffcccc" %>
+        <% if result.correct_answer == result.user_answer.to_i %>
+          <% color = "#ccffcc" %>
+        <% end %>
+        <tr bgcolor=<%=color%>>
+          <td>
+            <%= result.first_number.to_s + operations_list[result.operation].to_s + result.second_number.to_s%>
+          </td>
 
-        <td>
-          <%= result.first_number %>
-        </td>
+          <td>
+            <%= result.correct_answer %>
+          </td>
 
-        <td>
-          <%= result.second_number %>
-        </td>
+          <td>
+            <%= result.user_answer %>
+          </td>
 
-        <td>
-          <%= result.operation %>
-        </td>
+          <td>
+            <%= result.setting_id %>
+          </td>
 
-        <td>
-          <%= result.correct_answer %>
-        </td>
-
-        <td>
-          <%= result.user_answer %>
-        </td>
-
-        <td>
-          <%= result.setting_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(result.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(result.updated_at) %> ago
-        </td>
-      </tr>
+          <td>
+            <%= time_ago_in_words(result.created_at) %> ago
+          </td>
+        </tr>
       <% end %>
     </table>
   </div>
