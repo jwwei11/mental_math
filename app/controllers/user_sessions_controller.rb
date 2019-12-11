@@ -1,6 +1,9 @@
+# TODO: add validations
 class UserSessionsController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:new_session_form, :add_cookie] })
-
+  def home
+    render({:template => "application.html.erb"})
+  end
   def new_session_form
     render({ :template => "user_sessions/sign_in.html.erb" })
   end
@@ -9,7 +12,6 @@ class UserSessionsController < ApplicationController
     user = User.where({ :email => params.fetch("email_from_query") }).at(0)
     
     the_supplied_password = params.fetch("password_from_query")
-    
     if user != nil
       are_they_legit = user.authenticate(the_supplied_password)
     

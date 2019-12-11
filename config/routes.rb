@@ -1,6 +1,26 @@
 Rails.application.routes.draw do
 
+  # Reroute homepage
+  match("/", { :controller => "user_sessions", :action => "home", :via => "get"})
 
+  # Routes for the Result resource:
+
+  # CREATE
+  match("/insert_result", { :controller => "results", :action => "create", :via => "post"})
+          
+  # READ
+  match("/results", { :controller => "results", :action => "index", :via => "get"})
+  
+  match("/results/:id_from_path", { :controller => "results", :action => "show", :via => "get"})
+  
+  # UPDATE
+  
+  match("/modify_result/:id_from_path", { :controller => "results", :action => "update", :via => "post"})
+  
+  # DELETE
+  match("/delete_result/:id_from_path", { :controller => "results", :action => "destroy", :via => "get"})
+  match("/delete_all_results", { :controller => "results", :action => "destroy_all", :via => "get"})
+  #------------------------------
 
   # Routes for the Score resource:
 
@@ -40,7 +60,7 @@ Rails.application.routes.draw do
   # DELETE
   match("/delete_setting/:id_from_path", { :controller => "settings", :action => "destroy", :via => "get"})
 
-  #------------------------------
+  #------------------------------f
 
   # Routes for signing up
 

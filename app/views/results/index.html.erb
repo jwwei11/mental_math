@@ -1,0 +1,103 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all results
+    </h1>
+  </div>
+</div>
+<div class="col">
+  <a href="/delete_all_results" class="btn btn-block btn-outline-secondary">
+    Delete ALL Results
+  </a>
+</div>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          First number
+        </th>
+
+        <th>
+          Second number
+        </th>
+
+        <th>
+          Operation
+        </th>
+
+        <th>
+          Correct answer
+        </th>
+
+        <th>
+          User answer
+        </th>
+
+        <th>
+          Setting
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @results.each do |result| %>
+      <tr>
+        <td>
+          <%= result.id %>
+        </td>
+
+        <td>
+          <%= result.first_number %>
+        </td>
+
+        <td>
+          <%= result.second_number %>
+        </td>
+
+        <td>
+          <%= result.operation %>
+        </td>
+
+        <td>
+          <%= result.correct_answer %>
+        </td>
+
+        <td>
+          <%= result.user_answer %>
+        </td>
+
+        <td>
+          <%= result.setting_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(result.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(result.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/results/<%= result.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

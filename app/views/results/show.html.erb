@@ -1,0 +1,146 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Result #<%= @result.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/results" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_result/<%= @result.id %>" class="btn btn-block btn-outline-secondary">
+          Delete result
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        First number
+      </dt>
+      <dd>
+        <%= @result.first_number %>
+      </dd>
+
+      <dt>
+        Second number
+      </dt>
+      <dd>
+        <%= @result.second_number %>
+      </dd>
+
+      <dt>
+        Operation
+      </dt>
+      <dd>
+        <%= @result.operation %>
+      </dd>
+
+      <dt>
+        Correct answer
+      </dt>
+      <dd>
+        <%= @result.correct_answer %>
+      </dd>
+
+      <dt>
+        User answer
+      </dt>
+      <dd>
+        <%= @result.user_answer %>
+      </dd>
+
+      <dt>
+        Score
+      </dt>
+      <dd>
+        <%= @result.score_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@result.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@result.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit result
+    </h2>
+
+    <form action="/modify_result/<%= @result.id %>"  method="post" >
+      <div class="form-group">
+        <label for="first_number_box">
+          First number
+        </label>
+
+        <input type="text" id="first_number_box" name="first_number_from_query" class="form-control" value="<%= @result.first_number %>">
+      </div>
+
+      <div class="form-group">
+        <label for="second_number_box">
+          Second number
+        </label>
+
+        <input type="text" id="second_number_box" name="second_number_from_query" class="form-control" value="<%= @result.second_number %>">
+      </div>
+
+      <div class="form-group">
+        <label for="operation_box">
+          Operation
+        </label>
+
+        <input type="text" id="operation_box" name="operation_from_query" class="form-control" value="<%= @result.operation %>">
+      </div>
+
+      <div class="form-group">
+        <label for="correct_answer_box">
+          Correct answer
+        </label>
+
+        <input type="text" id="correct_answer_box" name="correct_answer_from_query" class="form-control" value="<%= @result.correct_answer %>">
+      </div>
+
+      <div class="form-group">
+        <label for="user_answer_box">
+          User answer
+        </label>
+
+        <input type="text" id="user_answer_box" name="user_answer_from_query" class="form-control" value="<%= @result.user_answer %>">
+      </div>
+
+      <div class="form-group">
+        <label for="score_id_box">
+          Score
+        </label>
+
+        <input type="text" id="score_id_box" name="score_id_from_query" class="form-control" value="<%= @result.score_id %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update result
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

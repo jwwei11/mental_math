@@ -19,13 +19,41 @@
     <div>
       <%=@problem %>
     </div>
-    <div>
-      <input type="text" id="user_answer" name="user_answer" class="form-control">
+
+    <form action="/insert_result" method ="post"  autocomplete="off" name="user_answer">
+      <div>
+          <input type="text" id="user_answer_from_query" name="user_answer_from_query" class="form-control" autofocus="autofocus">
+      </div>
+      <div>
+          <input type="hidden" id="first_number_from_query" name="first_number_from_query" class="form-control" value = <%=@problem_info.fetch(:first_number_from_query)%>>
+      </div
+      <div>
+          <input type="hidden" id="second_number_from_query" name="second_number_from_query" class="form-control" value = <%=@problem_info.fetch(:second_number_from_query)%>>
+      </div>
+      <div>
+          <input type="hidden" id="operation_from_query" name="operation_from_query" class="form-control" value = <%=@problem_info.fetch(:operation_from_query)%>>
+      </div>
+      <div>
+          <input type="hidden" id="correct_answer_from_query" name="correct_answer_from_query" class="form-control" value = <%=@problem_info.fetch(:correct_answer_from_query)%>>
+      </div>
+      <div>
+          <input type="hidden" id="id_from_path" name="id_from_path" class="form-control" value = <%=@current_setting.id%>>
+      </div>
+      <button class="btn btn-block btn-outline-secondary">
+        Submit Answer
+      </button>
+    </form>
+
+    <div class="col">
+      <a href= <%="/settings/" + params.fetch(:id_from_path)%> class="btn btn-block btn-outline-secondary">
+        End Practice
+      </a>
     </div>
+
     <script>
         var timer = setTimeout(function() {
-            window.location='https://www.google.com'
-        }, 3000);
+            document.forms["user_answer"].submit();
+        }, 6000);
     </script>
   </body>
 </html>

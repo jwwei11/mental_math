@@ -14,22 +14,51 @@ class SettingsController < ApplicationController
 
   def practice
     s = Setting.where(:id => params.fetch(:id_from_path)).first
+    @current_setting = s
     first_digit = rand(s.upper_digit_limit - s.lower_digit_limit) + s.lower_digit_limit
     second_digit = rand(s.upper_digit_limit - s.lower_digit_limit) + s.lower_digit_limit
-    operation = rand(4)
-    operation_list = ["x", "/", "+", "-"]
-
-    @problem = first_digit.to_s + operation_list[operation] + second_digit.to_s
-    if operation == 0
-      @answer = first_digit * second_digit
-    elif operation == 1
-      @answer = first_digit * second_digit
-    elif operation == 2
-      @answer = first_digit * second_digit
-    elif operation == 3
-      @answer = first_digit * second_digit
+    operation_list = []
+    if s.multiplication == true
+      operation_list.push("x")
     end
-
+    if s.division == true
+      operation_list.push("/")
+    end
+    if s.addition == true
+      operation_list.push("+")
+    end
+    if s.subtraction == true
+      operation_list.push("-")
+    end
+    operation = rand(operation_list.length)
+    # operation_list = ["x", "/", "+", "-"]
+    @problem = first_digit.to_s + operation_list[operation] + second_digit.to_s
+    # ensure that all answers are whole numbers
+    if operation_list[operation] == "/"
+      @problem = (first_digit * second_digit).to_s + "/" + second_digit.to_s
+    end
+    if operation_list[operation] == "x"
+      @answer = first_digit * second_digit
+    elsif operation_list[operation] == "/"
+      @answer = first_digit
+    elsif operation_list[operation] == "+"
+      @answer = first_digit + second_digit
+    elsif operation_list[operation] == "-"
+      @answer = first_digit - second_digit
+    end
+    @problem_info = {:first_number_from_query => first_digit,
+                      :second_number_from_query => second_digit, 
+                      :operation_from_query => operation, 
+                      :correct_answer_from_query => @answer}
+    # @current_result = Results.new
+    # @current_result.setting_id = s.id
+    # @current_result.first_digit = first_digit
+    # @current_result.second_digit = second_digit
+    # @current_result.operation = operation
+    # @current_result.correct_answer = @answer
+    # @next_url = request.original_url
+    # @next_url[-1] = @next_url[-1] + 1
+    
     render({ :template => "settings/game.html.erb"})
   end
 
