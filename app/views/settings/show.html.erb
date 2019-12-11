@@ -20,9 +20,6 @@
 
     <dl>
       <dt>
-        Owner: <%= @setting.owner_id %>
-      </dt>
-      <dt>
         Upper digit limit: <%= @setting.upper_digit_limit %>
       </dt>
       <dt>
@@ -46,6 +43,7 @@
       <dt>
         Updated at <%= time_ago_in_words(@setting.updated_at) %> ago
       </dt>
+
     </dl>
   </div>
 </div>
@@ -128,7 +126,16 @@
 </div>
 
 <hr>
-
+  <div class = "text-center">
+    <font size = 50> Your Results for Setting <%= @setting.id %> </font>
+  </div>
+<% total_correct = Result.where("correct_answer == user_answer").where(:setting_id => params.fetch(:id_from_path)).length %>
+<% total_attempts = Result.where(:setting_id => params.fetch(:id_from_path)).length%>
+<div class = "text-center">
+  <%if total_attempts != 0%>
+    <font size = 50> You have answered <%= total_correct %> questions correctly (<%= (total_correct*100.00/total_attempts).round(2) %> %)</font>
+  <% end %>
+</div>
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">

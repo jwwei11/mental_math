@@ -58,8 +58,12 @@ class ResultsController < ApplicationController
   end
 
   def destroy_all
-    Result.all.each do |result|
-      result.destroy
+    user_settings= Setting.where(:owner_id => session.fetch(:user_id))
+    user_settings.each do |user_s|
+      Result.where(:setting_id => user_s).each do |result|
+        result.destroy
+      end
+
     end
 
     redirect_to("/results", { :notice => "All results deleted successfully."} )

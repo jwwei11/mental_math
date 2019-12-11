@@ -49,12 +49,9 @@
         <th>
           Updated at
         </th>
-
-        <th>
-        </th>
       </tr>
-
-      <% @results.each do |result| %>
+      <% user_setting_ids = Setting.where(:owner_id => session.fetch(:user_id)).select("id") %>
+      <% Result.where(setting_id: user_setting_ids ).each do |result| %>
       <tr>
         <td>
           <%= result.id %>
@@ -89,12 +86,6 @@
         </td>
         <td>
           <%= time_ago_in_words(result.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/results/<%= result.id %>">
-            Show details
-          </a>
         </td>
       </tr>
       <% end %>

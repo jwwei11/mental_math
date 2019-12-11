@@ -4,11 +4,11 @@
     <font size = 100> Welcome, <%= User.where(:id => session.fetch(:user_id)).first.email %>! </font>
   </div>
   <div class="w-100 p-3">
-
-    <% total_correct = Result.where("correct_answer == user_answer").length %>
-    <% total_attempts = Result.count %>
+    <% user_setting_ids = Setting.where(:owner_id => session.fetch(:user_id)).select("id") %>
+    <% total_correct = Result.where("correct_answer == user_answer").where(setting_id: user_setting_ids ).length %>
+    <% total_attempts = Result.where(setting_id: user_setting_ids ).count %>
     <%if total_attempts != 0%>
-      <font size = 50> You have answered <%= total_correct %> questions correctly (<%= (total_correct*100.00/total_attempts).round(2) %> %)</font>
+      <font size = 50> Across all of your settings, you have answered <%= total_correct %> questions correctly (<%= (total_correct*100.00/total_attempts).round(2) %> %)</font>
     <% end %>
   </div>
   <div class = "col">
@@ -20,5 +20,7 @@
     <a href="/results">
       Your Practice Results
     </a>
-
+  <div>
+    <font size = 2> This is a site to help improve and track your mental math skills. Please choose what settings you want for the mental math problems. There is a 10 second timer for each question. </font>
+  </div>
 </div>

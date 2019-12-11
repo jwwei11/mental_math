@@ -15,4 +15,5 @@
 
 class Result < ApplicationRecord
   belongs_to :setting 
+
 end

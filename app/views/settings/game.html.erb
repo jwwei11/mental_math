@@ -39,12 +39,14 @@
         <div>
             <input type="hidden" id="id_from_path" name="id_from_path" class="form-control" value = <%=@current_setting.id%>>
         </div>
+        <div>
         <button class="btn btn-block btn-outline-secondary">
           Submit Answer
         </button>
+        </div>
       </form>
     </div>
-
+    <hr>
     <div class="col">
       <a href= <%="/settings/" + params.fetch(:id_from_path)%> class="btn btn-block btn-outline-secondary">
         End Practice
