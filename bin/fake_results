@@ -1,0 +1,15 @@
+require 'date'
+now = Date.today
+
+for day in 1..100 do
+  n = Result.new
+  n.correct_answer = 10
+  n.operation = 1
+  n.second_number = 10
+  n.first_number = 10
+  n.user_answer = 10
+  n.setting_id = 8
+  n.updated_at = now - day
+  p n.valid?
+  n.save
+end
