@@ -22,25 +22,6 @@ Rails.application.routes.draw do
   match("/delete_all_results", { :controller => "results", :action => "destroy_all", :via => "get"})
   #------------------------------
 
-  # Routes for the Score resource:
-
-  # CREATE
-  match("/insert_score", { :controller => "scores", :action => "create", :via => "post"})
-          
-  # READ
-  match("/scores", { :controller => "scores", :action => "index", :via => "get"})
-  
-  match("/scores/:id_from_path", { :controller => "scores", :action => "show", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_score/:id_from_path", { :controller => "scores", :action => "update", :via => "post"})
-  
-  # DELETE
-  match("/delete_score/:id_from_path", { :controller => "scores", :action => "destroy", :via => "get"})
-
-  #------------------------------
-
   # Routes for the Setting resource:
 
   # CREATE

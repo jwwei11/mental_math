@@ -21,7 +21,7 @@ class Setting < ApplicationRecord
   validates :subtraction, :presence => true, :inclusion => { in: [true, false] }
   validates :lower_digit_limit, :presence => true, :numericality => { only_integer: true, less_than: 9}
   validates :upper_digit_limit, :presence => true, :numericality => { only_integer: true, greater_than:  10}
-  validates :owner_id, :presence => true, :numericality => {only_integer}
+  validates :owner_id, :presence => true, :numericality => {only_integer: true}
   belongs_to :owner, :class_name => "User"
   has_many :results, :dependent => :destroy 
 end
