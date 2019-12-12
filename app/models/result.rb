@@ -14,6 +14,11 @@
 #
 
 class Result < ApplicationRecord
+  validates :correct_answer, :presence => true, :numericality => { only_integer: true}
+  validates :first_number, :presence => true, :numericality => { only_integer: true}
+  validates :operation, :presence => true, :inclusion => { in: [0, 1, 2, 3]}
+  validates :second_number, :presence => true, :numericality => { only_integer: true}
+  validates :user_answer, :presence => true, :numericality => { only_integer: true}
   belongs_to :setting 
 
 end
