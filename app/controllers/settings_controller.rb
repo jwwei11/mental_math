@@ -11,7 +11,27 @@ class SettingsController < ApplicationController
 
     render({ :template => "settings/show.html.erb" })
   end
+  def stats
+    the_id = params.fetch("id_from_path")
+    @setting = Setting.where({:id => the_id }).at(0)
+    setting_results = Result.where(:setting_id => @setting.id)
+    # num_slices = setting_results.length / 100
+    # times = []
+    # scores = []
+    # setting_results.each_slice(num_slices).to_a.each do |group|
+    #   group.each do |result|
+    #end
+    @total_correct = setting_results.where("correct_answer == user_answer").group_by { |c| c.created_at.to_date }
+    @total_attempts = setting_results.group_by { |c| c.created_at.to_date }
+    
+    @data = [["Date", "Percent Correct"]]
+    @total_attempts.keys.each do |date|
+      @data.push([date, @total_correct[date].length*100/@total_attempts[date].length])
+    end
 
+
+    render({ :template => "settings/stats.html.erb" })
+  end
   def practice
     s = Setting.where(:id => params.fetch(:id_from_path)).first
     @current_setting = s

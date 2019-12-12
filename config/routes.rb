@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   match("/settings/:id_from_path/practice/:question_id", { :controller => "settings", :action => "practice", :via => "get"})
   
+  match("/settings/:id_from_path/stats", { :controller => "settings", :action => "stats", :via => "get"})
   # UPDATE
   
   match("/modify_setting/:id_from_path", { :controller => "settings", :action => "update", :via => "post"})

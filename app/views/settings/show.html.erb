@@ -134,8 +134,12 @@
 <div class = "text-center">
   <%if total_attempts != 0%>
     <font size = 50> You have answered <%= total_correct %> questions correctly (<%= (total_correct*100.00/total_attempts).round(2) %> %)</font>
+    <div class = "text-center">
+      <a href=<%=request.original_url + "/stats"%>> View more detailed statistics </a>
+    </div>
   <% end %>
 </div>
+
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">

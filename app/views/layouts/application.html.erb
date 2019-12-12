@@ -26,40 +26,42 @@
       }
 
     </style>
-    <div class = "text-right">
-      <a href="/">
-        Home
-      </a>
-    </div>
-    <% if session.key?(:user_id) %>
+    <nav >
       <div class = "text-right">
-        Hi, <%= User.where(:id => session.fetch(:user_id)).first.email %> !
-      </div>
-      <div class = "text-right">
-        <a href="/settings">
-          Your Practice Settings
+        <a href="/">
+          Home
         </a>
       </div>
-      <div class = "text-right">
-        <a href="/user_sign_out">
-          Sign out
-        </a>
-      </div>
-    <% else %>
-      <div class = "text-right">
-        You are signed out!
-      </div>
-      <div class = "text-right">
-        <a href="/user_sign_in">
-          Sign In
-        </a>
-      </div>
-      <div class = "text-right">
-        <a href="/user_sign_up">
-          Sign Up
-        </a>
-      </div>
-    <%end%>
+      <% if session.key?(:user_id) %>
+        <div class = "text-right">
+          Hi, <%= User.where(:id => session.fetch(:user_id)).first.email %> !
+        </div>
+        <div class = "text-right">
+          <a href="/settings">
+            Your Practice Settings
+          </a>
+        </div>
+        <div class = "text-right">
+          <a href="/user_sign_out">
+            Sign out
+          </a>
+        </div>
+      <% else %>
+        <div class = "text-right">
+          You are signed out!
+        </div>
+        <div class = "text-right">
+          <a href="/user_sign_in">
+            Sign In
+          </a>
+        </div>
+        <div class = "text-right">
+          <a href="/user_sign_up">
+            Sign Up
+          </a>
+        </div>
+      <%end%>
+    </nav>
   </head>
 
   <body>
