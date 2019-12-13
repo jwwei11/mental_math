@@ -1,7 +1,7 @@
 <h1>
   <font size = 50> Setting <%= @setting.id %> </font>
 </h1>
-<%=@data%>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
   google.charts.load('current', {'packages':['corechart']});
@@ -51,7 +51,11 @@
       </td>
 
       <td>
-        <%= @total_correct[date].length %>
+        <% if @total_correct[date] != nil %>
+          <%= @total_correct[date].length %>
+        <% else %>
+          0
+        <% end %>
       </td>
 
       <td>
@@ -59,7 +63,11 @@
       </td>
 
       <td>
-        <%= @total_correct[date].length*100/@total_attempts[date].length %> %
+        <% if @total_correct[date] != nil %>
+          <%= @total_correct[date].length*100/@total_attempts[date].length %> %
+        <% else %>
+          0.0 %
+        <% end %>
       </td>
     </tr>
   <% end %>

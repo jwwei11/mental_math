@@ -26,7 +26,11 @@ class SettingsController < ApplicationController
     
     @data = [["Date", "Percent Correct"]]
     @total_attempts.keys.each do |date|
-      @data.push([date, @total_correct[date].length*100/@total_attempts[date].length])
+      if @total_correct[date] == nil
+        @data.push([date, 0.0])
+      else
+        @data.push([date, @total_correct[date].length*100/@total_attempts[date].length])
+      end
     end
 
 
